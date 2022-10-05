@@ -1,0 +1,176 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
+}
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#logo {
+    align-items: center;
+    display: block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0px 140px;
+}
+#sesion {
+    padding: 60px;
+    text-align: center;
+    float: left;
+    font-weight: bold;
+}
+#trabaja {
+    padding: 60px;
+    text-align: center;
+    float: right;
+    font-weight: bold;
+}
+nav {
+    margin-bottom: none;
+    padding-bottom: none;
+    position: sticky;
+    top: 0;  
+    padding: 5px; 
+    background-color: white;
+    margin: auto;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+}
+nav ul li {
+    float: left;
+}
+nav li {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+hr {
+    height: 5px;
+    background-color: #77EFE0;
+    border: none;
+    margin: 0px;
+}
+h1 {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.icons {
+    background-color: #6DF2FF;
+    padding: 25px;
+    margin-top: 0px;
+    text-align: center;
+}
+.icon:hover {
+    box-shadow: 0 5px 30px #193130, 0 -5px 30px #ebe3db;
+}
+.row {
+    display: flex;
+    border-spacing: 80px;
+    align-items: center;
+    justify-content:center;
+}
+.icon {
+    text-align: center;
+    width: 115px;
+    height: 70px;
+    padding: 10px;
+    border-radius: 25px;
+    display: block;
+    margin-inline: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 5px 10px 8px #888888;
+}
+.instrucciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.instructions-container {
+    background-color: transparent;
+    width: 700px;
+    height: 160px;
+    /*border: 1px solid #f1f1f1;*/
+    perspective: 1000px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+  /* This container is needed to position the front and back side */
+.box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    display: block;
+    margin-right: 50px;
+}
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+.box:hover .front {
+    transform: rotateY(180deg);
+}
+.box:hover .back {
+    transform: rotateY(0deg);
+    border-radius: 50%;
+}
+  
+  /* Position the front and back side */
+.front, .back {
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    transition: transform 1s;
+}
+  
+  /* Style the front side (fallback if image is missing) */
+.front {
+    position: absolute;
+    background-color: white;
+    color: black;
+}
+  
+  /* Style the back side */
+.back {
+    background-color: white;
+    color: white;
+    transform: rotateY(-180deg);
+}
+#text {
+    justify-content: center;
+    font-size: x-small;
+}
+
+footer {
+    background-color: gray;
+    text-align: center;
+}
+.footer, .copyright, .separators {
+    font-size: 10px;
+    color: white;
+}
+.copyright {
+    margin-left: 95px;
+}
+.separators {
+    display: inline;
+}

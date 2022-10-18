@@ -297,6 +297,21 @@ footer {
     color: #9A9EA9;
     text-decoration: underline;
 }
+.modal-body .register{
+    color: #7F7FD5;
+    font-size: 13px;
+    text-align: center;
+    width: calc(100% - 135px);
+    margin: 2px 0;
+    display: inline-block;
+    vertical-align: top;
+    transition: all 0.3s ease 0s;
+}
+.register:hover{
+    color: #9A9EA9;
+    text-decoration: underline;
+}
+
 .modal-content .modal-body .btn{
     color: #fff;
     background: linear-gradient(to right, #33a3ff, #0675cf, #4cd5ff);

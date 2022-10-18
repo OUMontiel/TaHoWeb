@@ -2,54 +2,54 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: black;
 }
-.navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-#taho_logo {
-    align-items: center;
-    display: block;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-#login-show {
-    padding: 60px;
-    text-align: center;
-    float: left;
-    font-weight: bold;
-}
-#trabaja {
-    padding: 60px;
-    text-align: center;
-    float: right;
-    font-weight: bold;
-}
-nav {
-    margin-bottom: none;
-    padding-bottom: none;
-    position: sticky;
-    top: 0;  
-    padding: 5px; 
+
+.topnav {
+    position: relative;
     background-color: white;
-    margin: auto;
-}
-nav ul {
-    list-style-type: none;
-    margin: 0;
     overflow: hidden;
-}
-nav ul li {
-    float: left;
-}
-nav li {
-    display: block;
+    height: 100px;
     text-align: center;
-    padding: 14px 16px;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 40px 50px;
     text-decoration: none;
-}
+    font-size: 17px;
+    color: black
+  }
+  
+  /* Centered section inside the top navigation */
+  .topnav-centered a {
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Right-aligned section inside the top navigation */
+  .topnav-right {
+    float: right;
+  }
+  
+  /* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+  @media screen and (max-width: 600px) {
+    .topnav a, .topnav-right {
+      float: none;
+      display: block;
+    }
+  
+    .topnav-centered a {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+    }
+  }
 
 a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
@@ -58,7 +58,7 @@ a:active { text-decoration: none; }
 
 #horizontal {
     height: 5px;
-    background-color: #77EFE0;
+    background-color: black;
     border: none;
     margin: 0px;
 }
@@ -67,7 +67,8 @@ h1 {
 }
 
 .icons {
-    background-color: #6DF2FF;
+    background: rgb(175,217,213);
+    background: linear-gradient(90deg, rgba(175,217,213,1) 5%, rgba(117,179,207,1) 30%, rgba(119,208,207,1) 100%);
     padding: 25px;
     margin-top: 0px;
     text-align: center;

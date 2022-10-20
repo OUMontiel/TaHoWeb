@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.endOfLine": "lf",
+    "prettier.tabWidth": 4,
+    "prettier.semi": true,
+    "prettier.trailingComma": "all",
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "typescript.updateImportsOnFileMove.enabled": "always"
+}

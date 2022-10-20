@@ -1,96 +1,96 @@
 import { Model, DataTypes } from 'sequelize';
 
-export class User extends Model {};
+export class User extends Model {}
 
 User.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         lastNmae: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         phone: {
             type: DataTypes.STRING,
-            allowNull: false
-        }
+            allowNull: false,
+        },
     },
     {
         sequelize,
         modelName: 'users',
-        timestamps: true
-    }
+        timestamps: true,
+    },
 );
 
-export class Worker extends Model {};
+export class Worker extends Model {}
 
 Worker.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         lastNmae: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         phone: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         rfc: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         certificate: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            allowNull: false,
         },
         services: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false
-        }
+            allowNull: false,
+        },
     },
     {
         sequelize,
         modelName: 'workers',
-        timestamps: true
-    }
+        timestamps: true,
+    },
 );
 
-export class Job extends Model {};
+export class Job extends Model {}
 
 Job.init(
     {
@@ -102,61 +102,61 @@ Job.init(
         userId: {
             type: DataTypes.INTEGER,
             references: {
-              model: User,
-              key: 'id',
+                model: User,
+                key: 'id',
             },
             allowNull: false,
         },
         workerId: {
             type: DataTypes.INTEGER,
             references: {
-              model: Worker,
-              key: 'id',
+                model: Worker,
+                key: 'id',
             },
             allowNull: false,
         },
         stars: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
         review: {
             type: DataTypes.STRING,
-            allowNull: false
-        }
+            allowNull: false,
+        },
     },
     {
         sequelize,
         modelName: 'jobs',
-        timestamps: true
-    }
-)
+        timestamps: true,
+    },
+);
 
-export class Award extends Model {};
+export class Award extends Model {}
 
 Award.init(
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
-        }
+            allowNull: false,
+        },
     },
     {
         sequelize,
         modelName: 'awards',
-        timestamps: true
-    }
+        timestamps: true,
+    },
 );
 
-export class WorkerAward extends Model {};
+export class WorkerAward extends Model {}
 
 WorkerAward.init(
     {
@@ -168,23 +168,23 @@ WorkerAward.init(
         workerId: {
             type: DataTypes.INTEGER,
             references: {
-              model: Worker,
-              key: 'id',
+                model: Worker,
+                key: 'id',
             },
             allowNull: false,
         },
         awardId: {
             type: DataTypes.INTEGER,
             references: {
-              model: Award,
-              key: 'id',
+                model: Award,
+                key: 'id',
             },
             allowNull: false,
-        }
+        },
     },
     {
         sequelize,
         modelName: 'workerAwards',
-        timestamps: true
-    }
+        timestamps: true,
+    },
 );

@@ -1,4 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
+import { sequelize } from './index.js';
 
 export class User extends Model {}
 
@@ -21,7 +22,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastNmae: {
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false,
         },

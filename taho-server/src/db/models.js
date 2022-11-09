@@ -1,7 +1,32 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from './index.js';
+import jwt from 'jsonwebtoken';
+const { sign } = jwt;
+import bcrypt from 'bcrypt';
 
-export class User extends Model {}
+export class User extends Model {
+    async generateToken() {
+        const jwtSecret = process.env.JWT_SECRET;
+        console.log(process.env);
+        if (!jwtSecret) {
+            throw new Error('No JWT Secret has been defined');
+        }
+        const token = sign({ id: this.id.toString() }, jwtSecret, {
+            expiresIn: '10h',
+        });
+        this.token = token;
+        await this.save();
+        return token;
+    }
+
+    comparePassword(password) {
+        return bcrypt.compare(password, this.password);
+    }
+
+    static hashPassword(password) {
+        return bcrypt.hash(password, 10);
+    }
+}
 
 User.init(
     {
@@ -10,7 +35,7 @@ User.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        email: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -18,7 +43,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        name: {
+        firstName: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -47,7 +72,7 @@ Worker.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        email: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -141,7 +166,7 @@ Award.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        email: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
         },

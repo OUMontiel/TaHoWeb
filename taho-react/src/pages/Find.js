@@ -4,9 +4,10 @@ class Find extends React.Component {
     render() {
         return (
             <div className="icons">
-                <div className="row mt-2">
-                    <div className="col-12 mb-3 col-md-0">
-                        <select className="form-select" id="filtrarPorTrabajo" onchange="searchFilter()">
+            <form>
+                <div className="form-row justify-content-md-center">
+                    <div className="col-auto">
+                        <select className="custom-select" id="filtrarPorTrabajo" onchange="searchFilter()">
                             <option value="" selected>Trabajo</option>
                             <option value="albañil">Albañil</option>
                             <option value="carpintero">Carpintero</option>
@@ -19,8 +20,8 @@ class Find extends React.Component {
                             <option value="plomero">Plomero</option>
                         </select>
                     </div>
-                    <div className="col-12 mb-3 col-md-0">
-                        <select className="form-select" id="filtrarPorLoc" onchange="searchFilter()">
+                    <div className="col-auto">
+                        <select className="custom-select" id="filtrarPorLoc" onchange="searchFilter()">
                             <option value="" selected>Ubicación</option>
                             <option value="green">Apodaca</option>
                             <option value="blue">Cadereyta Jimenez</option>
@@ -37,16 +38,16 @@ class Find extends React.Component {
                             <option value="yellow">Santiago</option>
                         </select>
                     </div>
-                    <div className="col-12 mb-3 col-md-0">
-                        <select className="form-select" id="filtrarPorCosto" onchange="searchFilter()">
+                    <div className="col-auto">
+                        <select className="custom-select" id="filtrarPorCosto" onchange="searchFilter()">
                             <option value="" selected>Costo</option>
                             <option value="green">$$$</option>
                             <option value="blue">$$</option>
                             <option value="yellow">$</option>
                         </select>
                     </div>
-                    <div className="col-12 mb-3 col-md-0">
-                        <select className="form-select" id="filtrarPorCalif" onchange="searchFilter()">
+                    <div className="col-auto">
+                        <select className="custom-select" id="filtrarPorCalif" onchange="searchFilter()">
                             <option value="" selected>Calificacion</option>
                             <option value="cinco">5</option>
                             <option value="cuatro">4</option>
@@ -55,8 +56,64 @@ class Find extends React.Component {
                             <option value="uno">1</option>
                         </select>
                     </div>
-                </div>  
+                </div>
+            </form>
+            <br /><br />
+
+                <div className="card-deck">
+                <div className="card">
+                    <img className="card-img-top" src={'...'} alt="Card image cap" />
+                    <div className="card-body">
+                        <h5 className="card-title">Jorge Sanchez</h5>
+                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional
+                            content. This content is a little bit longer.</p>
+                    </div>
+                    <div className="card-footer">
+                        <small className="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div className="card">
+                    <img className="card-img-top" src={'...'} alt="Card image cap" />
+                    <div className="card-body">
+                        <h5 className="card-title">Mauricio Rodriguez</h5>
+                        <p className="card-text">This card has supporting text below as a natural lead-in to additional
+                            content.
+                        </p>
+                    </div>
+                    <div className="card-footer">
+                        <small className="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div className="card">
+                    <img className="card-img-top" src={'...'} alt="Card image cap" />
+                    <div className="card-body">
+                        <h5 className="card-title">Carlos Herrera</h5>
+                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional
+                            content. This card has even longer content than the first to show that equal height action.
+                        </p>
+                    </div>
+                    <div className="card-footer">
+                        <small className="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+                <div className="card">
+                    <img className="card-img-top" src={'...'} alt="Card image cap" />
+                    <div className="card-body">
+                        <h5 className="card-title">Diego Montes</h5>
+                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to
+                            additional
+                            content. This card has even longer content than the first to show that equal height action.
+                        </p>
+                    </div>
+                    <div className="card-footer">
+                        <small className="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
             </div>
+            </div>
+
         )
     }
 }

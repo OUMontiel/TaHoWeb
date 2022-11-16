@@ -15,14 +15,14 @@ export const getServerSideProps = async (ctx) => {
         return {
             redirect: {
                 permanent: false,
-                destination: '/landingPage',
+                destination: '/home',
             },
         };
     }
     return { props: {} };
 };
 
-export default function Home() {
+export default function Index() {
     return (
         <Container>
             <Head>

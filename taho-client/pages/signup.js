@@ -11,7 +11,7 @@ export const getServerSideProps = async (ctx) => {
         return {
             redirect: {
                 permanent: false,
-                destination: '/landingPage',
+                destination: '/home',
             },
         };
     }

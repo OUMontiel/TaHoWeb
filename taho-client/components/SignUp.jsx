@@ -25,7 +25,7 @@ export default function SignUp() {
                 inputs,
                 { withCredentials: true },
             );
-            location.assign('/landingPage');
+            location.assign('/home');
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 alert((err.response?.data).error);

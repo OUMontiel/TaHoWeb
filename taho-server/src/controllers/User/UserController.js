@@ -16,6 +16,13 @@ class UserController {
                     error: 'Password does not follow the requirements!',
                 });
             }
+            const phonePattern =
+                /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
+            if (!phonePattern.test(phone)) {
+                return res.status(400).json({
+                    error: 'Phone number is not entered correctly',
+                });
+            }
             const hashedPassword = await User.hashPassword(password);
             let user;
             try {

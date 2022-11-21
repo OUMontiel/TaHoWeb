@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { jwtSecret } from '../config/index.js';
 
 const auth = async (req, res, next) => {
@@ -12,6 +12,7 @@ const auth = async (req, res, next) => {
         req.userId = decodedToken.id;
         next();
     } catch (error) {
+        console.log(error);
         res.status(401).json({ error: 'No session.' });
     }
 };

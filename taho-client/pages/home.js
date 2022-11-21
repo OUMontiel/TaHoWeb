@@ -33,6 +33,8 @@ export const getServerSideProps = async (ctx) => {
             },
         };
     }
+    const body = await res.json();
+    return { props: { user: body.user } };
 };
 
 export default function Home() {

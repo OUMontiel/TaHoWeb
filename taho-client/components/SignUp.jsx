@@ -73,6 +73,10 @@ export default function SignUp() {
                     name='phone'
                     id='phone'
                     label='Phone'
+                    inputProps={{
+                        pattern:
+                            '\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*',
+                    }}
                 />
                 <TextField
                     required

@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import axios from 'axios';
+import { apiServer } from '../config';
 
 export default function SignUp() {
     const onSubmit = async (e) => {
@@ -21,7 +22,7 @@ export default function SignUp() {
 
         try {
             const response = await axios.post(
-                'http://localhost:3001/user/register',
+                `${apiServer}/user/register`,
                 inputs,
                 { withCredentials: true },
             );

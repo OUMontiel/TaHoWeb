@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import axios from 'axios';
+import { apiServer } from '../config';
 
 export default function Login() {
     const onSubmit = async (e) => {
@@ -18,7 +19,7 @@ export default function Login() {
 
         try {
             const response = await axios.post(
-                'http://localhost:3001/user/login',
+                `${apiServer}/user/login`,
                 inputs,
                 { withCredentials: true },
             );

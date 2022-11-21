@@ -3,11 +3,10 @@ import { sequelize } from './index.js';
 import jwt from 'jsonwebtoken';
 const { sign } = jwt;
 import bcrypt from 'bcrypt';
+import { jwtSecret } from '../config/index.js';
 
 export class User extends Model {
     async generateToken() {
-        const jwtSecret = process.env.JWT_SECRET;
-        console.log(process.env);
         if (!jwtSecret) {
             throw new Error('No JWT Secret has been defined');
         }

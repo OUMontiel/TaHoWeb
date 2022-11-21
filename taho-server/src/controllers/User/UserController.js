@@ -52,7 +52,6 @@ class UserController {
         return async (req, res) => {
             const { username, password } = req.body;
             const user = await User.findOne({ where: { username } });
-            console.log(user);
             if (!user) {
                 return res.status(401).json({
                     error: 'Try again. Username has not been found.',

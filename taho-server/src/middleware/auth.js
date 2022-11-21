@@ -1,8 +1,8 @@
 import * as jwt from 'jsonwebtoken';
+import { jwtSecret } from '../config/index.js';
 
 const auth = async (req, res, next) => {
     const token = req.cookies.authcookie;
-    const jwtSecret = process.env.JWT_SECRET;
     if (!token || !jwtSecret) {
         return res.status(401).json({ error: 'No session.' });
     }

@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import Container from '@mui/material/Container';
 import SignUp from '../components/SignUp';
+import { apiServer } from '../config';
 
 export const getServerSideProps = async (ctx) => {
-    const res = await fetch('http://localhost:3001/user/auth', {
+    const res = await fetch(`${apiServer}/user/auth`, {
         credentials: 'include',
         headers: ctx.req.headers,
     });

@@ -82,6 +82,7 @@ class UserController {
 
     logout() {
         return async (req, res) => {
+            console.log('logging ooooooooooooooout');
             const user = await User.findByPk(req.userId);
             user?.update({ token: '' });
             res.clearCookie('authcookie');

@@ -37,10 +37,10 @@ export const getServerSideProps = async (ctx) => {
     return { props: { user: body.user } };
 };
 
-export default function Home() {
+export default function Home({ user }) {
     return (
         <>
-            <Header />
+            <Header user={user} />
             <main>
                 <div className='icons'>
                     <h1>¿Qué estas buscando?</h1>

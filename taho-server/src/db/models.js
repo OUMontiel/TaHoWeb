@@ -79,11 +79,11 @@ Worker.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        name: {
+        firstName: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        lastNmae: {
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false,
         },

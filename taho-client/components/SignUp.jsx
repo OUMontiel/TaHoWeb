@@ -1,122 +1,51 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Link from 'next/link';
-import axios from 'axios';
-import { apiServer } from '../config';
+import TabContext from '@mui/lab/TabContext';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import UserForm from './UserForm';
+import WorkerForm from './WorkerForm';
+
+function a11yProps(index) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 
 export default function SignUp() {
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        const target = e.target;
+    const [value, setValue] = React.useState(0);
 
-        const inputs = {
-            firstName: target.firstName.value,
-            lastName: target.lastName.value,
-            phone: target.phone.value,
-            username: target.username.value,
-            password: target.password.value,
-        };
-
-        try {
-            const response = await axios.post(
-                `${apiServer}/user/register`,
-                inputs,
-                { withCredentials: true },
-            );
-            location.assign('/home');
-        } catch (err) {
-            if (axios.isAxiosError(err) && err.response) {
-                alert((err.response?.data).error);
-            }
-        }
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
     };
 
     return (
         <Box
-            component='div'
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            minHeight='100vh'
+            sx={{
+                width: '80%',
+                typography: 'body1',
+            }}
         >
-            <Stack
-                component='form'
-                sx={{
-                    '& .MuiFormControl-root': { my: 1 },
-                    p: 3,
-                    borderRadius: 2,
-                    bgcolor: 'white',
-                    maxWidth: '100%',
-                }}
-                onSubmit={onSubmit}
-            >
-                <TextField
-                    required
-                    fullWidth
-                    name='firstName'
-                    id='firstName'
-                    label='First name'
-                />
-                <TextField
-                    required
-                    fullWidth
-                    name='lastName'
-                    id='lastName'
-                    label='Last name'
-                />
-                <TextField
-                    required
-                    fullWidth
-                    name='phone'
-                    id='phone'
-                    label='Phone'
-                    inputProps={{
-                        pattern:
-                            '\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*',
-                    }}
-                />
-                <TextField
-                    required
-                    fullWidth
-                    name='username'
-                    id='username'
-                    label='Username'
-                />
-                <TextField
-                    required
-                    fullWidth
-                    name='password'
-                    id='password'
-                    label='Password'
-                    type='password'
-                    inputProps={{
-                        pattern: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
-                    }}
-                    helperText='At least 8 characters, 1 uppercase, 1 lowercase y 1 number.'
-                />
-
-                <Button
-                    variant='contained'
-                    size='large'
-                    type='submit'
-                    sx={{ mb: 1 }}
+            <TabContext value={toString(value)}>
+                <Box
+                    component='div'
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                 >
-                    Create account
-                </Button>
-                <Link href='/login'>
-                    <Button
-                        variant='contained'
-                        color='secondary'
-                        size='large'
-                        type='submit'
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        aria-label='user worker tabs'
                     >
-                        Go to login
-                    </Button>
-                </Link>
-            </Stack>
+                        <Tab label='User' {...a11yProps(0)} />
+                        <Tab label='Worker' {...a11yProps(1)} />
+                    </Tabs>
+                </Box>
+                <UserForm value={value} index={0} />
+                <WorkerForm value={value} index={1} />
+            </TabContext>
         </Box>
     );
 }

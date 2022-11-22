@@ -26,7 +26,6 @@ export default function Header({ user }) {
     };
 
     const logout = async (e) => {
-        console.log('dafuk');
         e.preventDefault();
         try {
             await fetch(`${apiServer}/user/logout`, {

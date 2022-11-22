@@ -21,7 +21,14 @@ export const getServerSideProps = async (ctx) => {
 
 export default function SignUpPage() {
     return (
-        <Container>
+        <Container
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+            }}
+        >
             <Head>
                 <title>Sign Up - TaHo</title>
             </Head>

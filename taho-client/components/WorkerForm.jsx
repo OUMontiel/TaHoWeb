@@ -56,7 +56,6 @@ export default function WorkerForm(props) {
             target: { value },
         } = event;
         setWorkerServices(typeof value === 'string' ? value.split(',') : value);
-        console.log(workerServices);
     };
 
     const onSubmit = async (e) => {
@@ -75,16 +74,13 @@ export default function WorkerForm(props) {
             password: target.password.value,
         };
 
-        inputs.services = inputs.services.split(',');
-        console.log(inputs);
-
         try {
             const response = await axios.post(
                 `${apiServer}/worker/register`,
                 inputs,
                 { withCredentials: true },
             );
-            location.assign('/home');
+            location.assign('/calls');
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 alert((err.response?.data).error);
@@ -148,7 +144,6 @@ export default function WorkerForm(props) {
                     </Stack>
                     <Stack direction='row' spacing={2}>
                         <TextField
-                            required
                             fullWidth
                             name='certificates'
                             id='certificates'

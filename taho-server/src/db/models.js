@@ -5,12 +5,13 @@ const { sign } = jwt;
 import bcrypt from 'bcrypt';
 import { jwtSecret } from '../config/index.js';
 
-export class User extends Model {
-    async generateToken() {
+export class UserWorker extends Model {
+    async generateToken(isWorker) {
         if (!jwtSecret) {
             throw new Error('No JWT Secret has been defined');
         }
-        const token = sign({ id: this.id.toString() }, jwtSecret, {
+        const id = (isWorker ? 'w' : 'u') + this.id.toString();
+        const token = sign({ id }, jwtSecret, {
             expiresIn: '10h',
         });
         this.token = token;
@@ -26,6 +27,8 @@ export class User extends Model {
         return bcrypt.hash(password, 10);
     }
 }
+
+export class User extends UserWorker {}
 
 User.init(
     {
@@ -62,7 +65,7 @@ User.init(
     },
 );
 
-export class Worker extends Model {}
+export class Worker extends UserWorker {}
 
 Worker.init(
     {
@@ -95,8 +98,8 @@ Worker.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        certificate: {
-            type: DataTypes.BOOLEAN,
+        certificates: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
         services: {

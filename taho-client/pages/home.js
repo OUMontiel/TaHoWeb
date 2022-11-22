@@ -18,8 +18,6 @@ import plomero from '../images/plomero.png';
 import registrate from '../images/registrate.png';
 import verificacion from '../images/verificacion.png';
 
-import { NavLink, Link } from 'react-router-dom';
-
 export const getServerSideProps = async (ctx) => {
     const res = await fetch(`${apiServer}/user/auth`, {
         credentials: 'include',

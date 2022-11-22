@@ -1,11 +1,30 @@
 import { sequelize } from '../../db/index.js';
-import { User, Worker } from '../../db/models.js';
+import { Worker } from '../../db/models.js';
 
-class UserController {
+class WorkerController {
     register() {
         return async (req, res) => {
-            const { firstName, lastName, phone, username, password } = req.body;
-            if (!firstName || !lastName || !phone || !username || !password) {
+            const {
+                firstName,
+                lastName,
+                phone,
+                rfc,
+                certificates,
+                services,
+                description,
+                username,
+                password,
+            } = req.body;
+            if (
+                !firstName ||
+                !lastName ||
+                !phone ||
+                !rfc ||
+                !services ||
+                !description ||
+                !username ||
+                !password
+            ) {
                 return res
                     .status(400)
                     .json({ error: 'All fields are required!' });
@@ -23,21 +42,25 @@ class UserController {
                     error: 'Phone number is not entered correctly',
                 });
             }
-            const hashedPassword = await User.hashPassword(password);
-            let user;
+            const hashedPassword = await Worker.hashPassword(password);
+            let worker;
             try {
-                user = await sequelize.transaction(async (t) => {
-                    const user = await User.create(
+                worker = await sequelize.transaction(async (t) => {
+                    const worker = await Worker.create(
                         {
                             username,
                             password: hashedPassword,
                             firstName,
                             lastName,
                             phone,
+                            rfc,
+                            certificates,
+                            services,
+                            description,
                         },
                         { transaction: t },
                     );
-                    return user;
+                    return worker;
                 });
             } catch (error) {
                 console.log(error);
@@ -45,12 +68,12 @@ class UserController {
                     error: 'Username unavailable. Try a different one.',
                 });
             }
-            const token = await user.generateToken(false);
+            const token = await worker.generateToken(true);
             res.cookie('authcookie', token);
             res.status(201).json({
                 success: true,
-                message: 'User created successfully',
-                user,
+                message: 'Worker created successfully',
+                worker,
             });
         };
     }
@@ -58,57 +81,44 @@ class UserController {
     login() {
         return async (req, res) => {
             const { username, password } = req.body;
-            const user = await User.findOne({ where: { username } });
-            if (!user) {
+            const worker = await Worker.findOne({ where: { username } });
+            if (!worker) {
                 return res.status(401).json({
-                    error: 'Try again. Username has not been found.',
+                    error: 'Try again. Username for worker has not been found.',
                 });
             }
-            const matches = await user.comparePassword(password);
+            const matches = await worker.comparePassword(password);
             if (!matches) {
                 return res.status(401).json({
                     error: 'Try again. Username and password do not match.',
                 });
             }
-            const token = await user.generateToken(false);
+            const token = await worker.generateToken(true);
             res.cookie('authcookie', token);
             res.status(201).json({
                 success: true,
                 message: 'Login successful',
-                user,
-            });
-        };
-    }
-
-    logout() {
-        return async (req, res) => {
-            const user = await User.findByPk(req.userId.slice(1));
-            user?.update({ token: '' });
-            const worker = await Worker.findByPk(req.userId.slice(1));
-            worker?.update({ token: '' });
-            res.clearCookie('authcookie');
-            res.status(200).json({
-                success: true,
-                message: 'Logout successful',
+                worker,
             });
         };
     }
 
     isLoggedIn() {
         return async (req, res) => {
-            if (req.userId[0] !== 'u') {
+            if (req.userId[0] !== 'w') {
                 return res.status(401).json({
                     success: false,
-                    message: 'Worker not authorized',
+                    message: 'User not authorized',
+                    user,
                 });
             }
 
-            const user = await User.findByPk(req.userId.slice(1));
-            if (user !== null) {
+            const worker = await Worker.findByPk(req.userId);
+            if (worker !== null) {
                 return res.status(201).json({
                     success: true,
                     message: 'Active session',
-                    user,
+                    worker,
                 });
             } else {
                 res.sendStatus(401);
@@ -117,4 +127,4 @@ class UserController {
     }
 }
 
-export default new UserController();
+export default new WorkerController();

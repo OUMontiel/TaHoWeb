@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Image from 'next/image';
 import Footer from '../components/Footer';
 import { apiServer } from '../config/index.js';
+import Link from 'next/link';
 
 import albanil from '../images/albanil.png';
 import busca from '../images/busca.png';
@@ -43,18 +44,18 @@ export default function Home({ user }) {
                 <div className='icons'>
                     <h1>¿Qué estas buscando?</h1>
                     <div className='row'>
-                        {/* <Link to='/find'> */}
-                        <div className='icon'>
-                            <Image
-                                id='plomero'
-                                src={plomero}
-                                width='50px'
-                                height='50px'
-                            />
-                            <br />
-                            <span>PLOMERO</span>
-                        </div>
-                        {/* </Link> */}
+                        <Link href='/find'>
+                            <div className='icon'>
+                                <Image
+                                    id='plomero'
+                                    src={plomero}
+                                    width='50px'
+                                    height='50px'
+                                />
+                                <br />
+                                <span>PLOMERO</span>
+                            </div>
+                        </Link>
                         <div className='icon'>
                             <Image
                                 id='image'

@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -26,6 +27,12 @@ export const getServerSideProps = async (ctx) => {
 export default function Find({ user }) {
     return (
         <>
+        <Script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" />
+        <Script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" />
+        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"></link>
+
             <Header user={user} />
             <div className='icons'>
                 <form>
@@ -121,8 +128,8 @@ export default function Find({ user }) {
                             className='card-img-top'
                             src={albanil}
                             alt='Card image cap'
-                            width={50}
-                            height={50}
+                            width={150}
+                            height={85}
                         />
                         <div className='card-body'>
                             <h5 className='card-title'>Jorge Sanchez</h5>
@@ -143,8 +150,8 @@ export default function Find({ user }) {
                             className='card-img-top'
                             src={albanil}
                             alt='Card image cap'
-                            width={50}
-                            height={50}
+                            width={150}
+                            height={85}
                         />
                         <div className='card-body'>
                             <h5 className='card-title'>Mauricio Rodriguez</h5>
@@ -164,8 +171,8 @@ export default function Find({ user }) {
                             className='card-img-top'
                             src={albanil}
                             alt='Card image cap'
-                            width={50}
-                            height={50}
+                            width={150}
+                            height={85}
                         />
                         <div className='card-body'>
                             <h5 className='card-title'>Carlos Herrera</h5>
@@ -187,8 +194,8 @@ export default function Find({ user }) {
                             className='card-img-top'
                             src={albanil}
                             alt='Card image cap'
-                            width={50}
-                            height={50}
+                            width={150}
+                            height={85}
                         />
                         <div className='card-body'>
                             <h5 className='card-title'>Diego Montes</h5>
@@ -208,6 +215,12 @@ export default function Find({ user }) {
                 </div>
             </div>
             <Footer />
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+            crossorigin="anonymous"></script>
         </>
     );
 }

@@ -41,7 +41,7 @@ export default function Header({ user }) {
 
     return (
         <Toolbar sx={{ justifyContent: 'space-between' }}>
-            <Link href='/'>
+            <Link href='/home'>
                 <Button>
                     <Image
                         id='taho_logo'

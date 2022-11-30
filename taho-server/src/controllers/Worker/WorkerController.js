@@ -1,5 +1,6 @@
 import { sequelize } from '../../db/index.js';
 import { Worker } from '../../db/models.js';
+import { Op } from 'sequelize';
 
 class WorkerController {
     register() {
@@ -100,6 +101,42 @@ class WorkerController {
                 message: 'Login successful',
                 worker,
             });
+        };
+    }
+
+    getWorkers() {
+        return async (req, res) => {
+            const { service } = req.params;
+
+            const services = [
+                'Albañil',
+                'Carpintero',
+                'Cerrajero',
+                'Electricista',
+                'Jardinero',
+                'Limpieza',
+                'Niñera',
+                'Pintor',
+                'Plomero',
+            ];
+
+            if (service === 'all') {
+                const workers = await Worker.findAll();
+                res.json(workers);
+            } else if (services.includes(service)) {
+                const workers = await Worker.findAll({
+                    where: {
+                        services: {
+                            [Op.like]: `%${service}%`,
+                        },
+                    },
+                });
+                res.json(workers);
+            } else {
+                return res.sendStatus(404);
+            }
+
+            res.json(service);
         };
     }
 }

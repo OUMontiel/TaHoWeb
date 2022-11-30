@@ -1,11 +1,11 @@
 import Script from 'next/script';
 import React from 'react';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 import Image from 'next/image';
-import { apiServer } from '../config/index.js';
-
-import albanil from '../images/albanil.png';
+import WorkerTile from '../../components/WorkerTile';
+import { apiServer } from '../../config/index.js';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps = async (ctx) => {
     const res = await fetch(`${apiServer}/user/auth`, {
@@ -33,6 +33,26 @@ export const getServerSideProps = async (ctx) => {
 };
 
 export default function Find({ user }) {
+    const router = useRouter();
+    const workerService = router.query;
+    const [workers, setWorkers] = React.useState([]);
+
+    React.useEffect(() => {
+        const fetchWorkers = async () => {
+            const workersResponse = await fetch(
+                `${apiServer}/worker/${workerService.service}`,
+                {
+                    credentials: 'include',
+                },
+            );
+            const workers = await workersResponse.json();
+            console.log(workers);
+            setWorkers(workers);
+        };
+
+        fetchWorkers().catch(console.error);
+    }, [workerService]);
+
     return (
         <>
             <Script src='https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js' />
@@ -138,97 +158,20 @@ export default function Find({ user }) {
                 <br />
                 <br />
 
-                <div className='card-deck'>
-                    <div className='card'>
-                        <Image
-                            className='card-img-top'
-                            src={albanil}
-                            alt='Card image cap'
-                            width={150}
-                            height={85}
+                {workers.length > 0 &&
+                    workers.map((worker) => (
+                        <WorkerTile
+                            key={`worker-${worker.id}`}
+                            service={workerService}
+                            workerId={worker.id}
+                            firstName={worker.firstName}
+                            lastName={worker.lastName}
+                            services={worker.services}
+                            phone={worker.phone}
+                            certificates={worker.certificates}
+                            description={worker.description}
                         />
-                        <div className='card-body'>
-                            <h5 className='card-title'>Jorge Sanchez</h5>
-                            <p className='card-text'>
-                                This is a wider card with supporting text below
-                                as a natural lead-in to additional content. This
-                                content is a little bit longer.
-                            </p>
-                        </div>
-                        <div className='card-footer'>
-                            <small className='text-muted'>
-                                Last updated 3 mins ago
-                            </small>
-                        </div>
-                    </div>
-                    <div className='card'>
-                        <Image
-                            className='card-img-top'
-                            src={albanil}
-                            alt='Card image cap'
-                            width={150}
-                            height={85}
-                        />
-                        <div className='card-body'>
-                            <h5 className='card-title'>Mauricio Rodriguez</h5>
-                            <p className='card-text'>
-                                This card has supporting text below as a natural
-                                lead-in to additional content.
-                            </p>
-                        </div>
-                        <div className='card-footer'>
-                            <small className='text-muted'>
-                                Last updated 3 mins ago
-                            </small>
-                        </div>
-                    </div>
-                    <div className='card'>
-                        <Image
-                            className='card-img-top'
-                            src={albanil}
-                            alt='Card image cap'
-                            width={150}
-                            height={85}
-                        />
-                        <div className='card-body'>
-                            <h5 className='card-title'>Carlos Herrera</h5>
-                            <p className='card-text'>
-                                This is a wider card with supporting text below
-                                as a natural lead-in to additional content. This
-                                card has even longer content than the first to
-                                show that equal height action.
-                            </p>
-                        </div>
-                        <div className='card-footer'>
-                            <small className='text-muted'>
-                                Last updated 3 mins ago
-                            </small>
-                        </div>
-                    </div>
-                    <div className='card'>
-                        <Image
-                            className='card-img-top'
-                            src={albanil}
-                            alt='Card image cap'
-                            width={150}
-                            height={85}
-                        />
-                        <div className='card-body'>
-                            <h5 className='card-title'>Diego Montes</h5>
-                            <p className='card-text'>
-                                This is a wider card with supporting text below
-                                as a natural lead-in to additional content. This
-                                card has even longer content than the first to
-                                show that equal height action.
-                            </p>
-                        </div>
-                        <div className='card-footer'>
-                            <small className='text-muted'>
-                                Last updated 3 mins ago
-                            </small>
-                        </div>
-                    </div>
-                </div>
+                    ))}
             </div>
             <Footer />
             <script

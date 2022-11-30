@@ -47,7 +47,7 @@ export default function Profile({ user, isWorker }) {
                     <div className='modal-content'>
                         <div className='modal-header'>
                             <h4 className='modal-title'>
-                                {isWorker ? 'asdf' : 'qwer'}
+                                {isWorker ? 'Trabajador' : 'Usuario'}
                             </h4>
                             <Button
                                 className='btn-close'

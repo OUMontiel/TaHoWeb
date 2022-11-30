@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Link from 'next/link';
-import taho_logo from './taho_logo.png';
+import taho_logo from '../images/taho_logo.png';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { apiServer } from '../config';

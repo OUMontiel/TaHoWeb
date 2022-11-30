@@ -6,18 +6,14 @@ import { apiServer } from '../config/index.js';
 import Link from 'next/link';
 
 import albanil from '../images/albanil.png';
-import busca from '../images/busca.png';
 import carpintero from '../images/carpintero.png';
 import cerrajero from '../images/cerrajero.png';
 import electricista from '../images/electricista.png';
-import iniciosesion from '../images/inicio-de-sesion.png';
 import jardinero from '../images/jardinero.png';
 import limpieza from '../images/limpieza.png';
 import ninera from '../images/ninera.png';
 import pintor from '../images/pintor.png';
 import plomero from '../images/plomero.png';
-import registrate from '../images/registrate.png';
-import verificacion from '../images/verificacion.png';
 
 export const getServerSideProps = async (ctx) => {
     const res = await fetch(`${apiServer}/user/auth`, {
@@ -147,100 +143,6 @@ export default function Home({ user }) {
                             />
                             <br />
                             <span>PINTOR</span>
-                        </div>
-                    </div>
-                </div>
-                <br />
-                <div className='instrucciones'>
-                    <h2>Pasos a seguir:</h2>
-                    <div className='instructions-container'>
-                        <div className='box'>
-                            <div
-                                className='front'
-                                style={{ marginTop: '10px' }}
-                            >
-                                <Image
-                                    className='step-image'
-                                    src={registrate}
-                                    width={140}
-                                    height={140}
-                                />
-                            </div>
-                            <div className='back'>
-                                <br />
-                                <p id='text'>
-                                    1.El primer paso es crear una cuenta y
-                                    registrarte con nosotros.
-                                </p>
-                                <p id='text'>
-                                    Puedes registrarte como usuario o trabajador
-                                    según tus necesidades
-                                </p>
-                            </div>
-                        </div>
-                        <div className='box'>
-                            <div
-                                className='front'
-                                style={{ marginTop: '10px' }}
-                            >
-                                <Image
-                                    className='step-image'
-                                    src={verificacion}
-                                    width={140}
-                                    height={140}
-                                />
-                            </div>
-                            <div className='back'>
-                                <br />
-                                <p id='text'>
-                                    2.El segundo paso es esperar a que tu cuenta
-                                    sea verificada.
-                                </p>
-                            </div>
-                        </div>
-                        <div className='box'>
-                            <div
-                                className='front'
-                                style={{ marginTop: '10px' }}
-                            >
-                                <Image
-                                    className='step-image'
-                                    src={iniciosesion}
-                                    width={140}
-                                    height={140}
-                                />
-                            </div>
-                            <div className='back'>
-                                <br />
-                                <p id='text'>
-                                    3.Una vez verificada tu cuenta, inicia
-                                    sesión en nuestra página.
-                                </p>
-                            </div>
-                        </div>
-                        <div className='box'>
-                            <div
-                                className='front'
-                                style={{ marginTop: '10px' }}
-                            >
-                                <Image
-                                    className='step-image'
-                                    src={busca}
-                                    width={140}
-                                    height={140}
-                                />
-                            </div>
-                            <div className='back'>
-                                <p id='text'>
-                                    4.¡A explorar la página! En caso de ser
-                                    usuario, podrás buscar trabajdores que se
-                                    adapten a tus necesidades.
-                                </p>
-                                <p id='text'>
-                                    En caso de ser trabajador, podrás publicar
-                                    tu perfil y esperar a que te contacten.
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>

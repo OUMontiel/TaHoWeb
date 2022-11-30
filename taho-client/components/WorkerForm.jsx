@@ -235,16 +235,33 @@ export default function WorkerForm(props) {
                     >
                         Create account
                     </Button>
-                    <Link href='/login'>
-                        <Button
-                            variant='contained'
-                            color='secondary'
-                            size='large'
-                            type='submit'
-                        >
-                            Go to login
-                        </Button>
-                    </Link>
+                    <Stack
+                        direction='row'
+                        spacing={2}
+                        fullWidth
+                        justifyContent='center'
+                    >
+                        <Link href='/'>
+                            <Button
+                                variant='contained'
+                                color='secondary'
+                                type='submit'
+                                fullWidth
+                            >
+                                Go back
+                            </Button>
+                        </Link>
+                        <Link href='/login'>
+                            <Button
+                                variant='contained'
+                                color='secondary'
+                                type='submit'
+                                fullWidth
+                            >
+                                Go to login
+                            </Button>
+                        </Link>
+                    </Stack>
                 </Stack>
             )}
         </div>

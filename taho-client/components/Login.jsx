@@ -113,16 +113,33 @@ export default function Login() {
                 >
                     Login
                 </Button>
-                <Link href='/signup'>
-                    <Button
-                        variant='contained'
-                        color='secondary'
-                        size='large'
-                        type='submit'
-                    >
-                        Go to sign up
-                    </Button>
-                </Link>
+                <Stack
+                    direction='row'
+                    spacing={2}
+                    fullWidth
+                    justifyContent='center'
+                >
+                    <Link href='/'>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                            type='submit'
+                            fullWidth
+                        >
+                            Go back
+                        </Button>
+                    </Link>
+                    <Link href='/signup'>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                            type='submit'
+                            fullWidth
+                        >
+                            Go to signup
+                        </Button>
+                    </Link>
+                </Stack>
             </Stack>
         </Box>
     );

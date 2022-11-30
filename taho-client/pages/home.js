@@ -33,6 +33,14 @@ export const getServerSideProps = async (ctx) => {
         };
     }
     const body = await res.json();
+    if (body.isWorker) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/calls',
+            },
+        };
+    }
     return { props: { user: body.user } };
 };
 

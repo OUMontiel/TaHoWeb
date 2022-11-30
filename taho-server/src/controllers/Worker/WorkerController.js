@@ -102,29 +102,6 @@ class WorkerController {
             });
         };
     }
-
-    isLoggedIn() {
-        return async (req, res) => {
-            if (req.userId[0] !== 'w') {
-                return res.status(401).json({
-                    success: false,
-                    message: 'User not authorized',
-                    user,
-                });
-            }
-
-            const worker = await Worker.findByPk(req.userId);
-            if (worker !== null) {
-                return res.status(201).json({
-                    success: true,
-                    message: 'Active session',
-                    worker,
-                });
-            } else {
-                res.sendStatus(401);
-            }
-        };
-    }
 }
 
 export default new WorkerController();

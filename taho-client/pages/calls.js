@@ -17,14 +17,22 @@ export const getServerSideProps = async (ctx) => {
         };
     }
     const body = await res.json();
-    return { props: { worker: body.worker } };
+    if (!body.isWorker) {
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/home',
+            },
+        };
+    }
+    return { props: { worker: body.user } };
 };
 
-export default function Calls( {worker}) {
+export default function Calls({ worker }) {
     return (
         <>
-            <Header worker={worker} />
-            
+            <Header user={worker} />
+
             <Footer />
         </>
     );

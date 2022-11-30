@@ -96,18 +96,18 @@ class UserController {
 
     isLoggedIn() {
         return async (req, res) => {
-            if (req.userId[0] !== 'u') {
-                return res.status(401).json({
-                    success: false,
-                    message: 'Worker not authorized',
-                });
+            const isWorker = req.userId[0] == 'w' ? true : false;
+            let user;
+            if (!isWorker) {
+                user = await User.findByPk(req.userId.slice(1));
+            } else {
+                user = await Worker.findByPk(req.userId.slice(1));
             }
-
-            const user = await User.findByPk(req.userId.slice(1));
             if (user !== null) {
                 return res.status(201).json({
                     success: true,
                     message: 'Active session',
+                    isWorker,
                     user,
                 });
             } else {

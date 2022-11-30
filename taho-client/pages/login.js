@@ -9,12 +9,22 @@ export const getServerSideProps = async (ctx) => {
         headers: ctx.req.headers,
     });
     if (res.status === 201) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: '/home',
-            },
-        };
+        const body = await res.json();
+        if (!body.isWorker) {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: '/home',
+                },
+            };
+        } else {
+            return {
+                redirect: {
+                    permanent: false,
+                    destination: '/calls',
+                },
+            };
+        }
     }
     return { props: {} };
 };

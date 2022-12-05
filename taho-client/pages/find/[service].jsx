@@ -81,7 +81,7 @@ export default function Find({ user }) {
                 crossorigin='anonymous'
             ></link>
 
-            <Header user={user} />
+            <Header user={user} isWorker={false} />
             <div className='icons'>
                 <Button
                     variant='contained'

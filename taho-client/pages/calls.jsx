@@ -31,7 +31,7 @@ export const getServerSideProps = async (ctx) => {
 export default function Calls({ worker }) {
     return (
         <>
-            <Header user={worker} />
+            <Header user={worker} isWorker={true} />
 
             <Footer />
         </>

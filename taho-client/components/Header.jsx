@@ -1,17 +1,22 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 import Image from 'next/image';
+import Link from 'next/link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Link from 'next/link';
+import ProfileModal from './ProfileModal';
 import taho_logo from '../images/taho_logo.png';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { apiServer } from '../config';
 
-export default function Header({ user }) {
+export default function Header({ user, isWorker }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const [openProfile, setOpenProfile] = React.useState(false);
+    const handleCloseProfile = () => setOpenProfile(false);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -19,10 +24,6 @@ export default function Header({ user }) {
 
     const handleClose = () => {
         setAnchorEl(null);
-    };
-
-    const seeProfile = () => {
-        location.assign('/profile');
     };
 
     const logout = async (e) => {
@@ -110,9 +111,17 @@ export default function Header({ user }) {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem onClick={seeProfile}>Mi cuenta</MenuItem>
+                <MenuItem onClick={() => setOpenProfile(true)}>
+                    Mi cuenta
+                </MenuItem>
                 <MenuItem onClick={logout}>Cerrar sesión</MenuItem>
             </Menu>
+            <ProfileModal
+                user={user}
+                isWorker={isWorker}
+                openProfile={openProfile}
+                handleCloseProfile={handleCloseProfile}
+            />
         </Toolbar>
     );
 }

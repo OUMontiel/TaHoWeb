@@ -43,7 +43,7 @@ export const getServerSideProps = async (ctx) => {
 export default function Home({ user }) {
     return (
         <>
-            <Header user={user} />
+            <Header user={user} isWorker={false} />
             <main>
                 <div className='icons'>
                     <h1>¿Qué estas buscando?</h1>

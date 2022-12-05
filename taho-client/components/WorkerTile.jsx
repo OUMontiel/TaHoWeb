@@ -1,10 +1,11 @@
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
+import { apiServer } from '../config/index.js';
 
 import albanil from '../images/albanil.png';
 import carpintero from '../images/carpintero.png';
@@ -15,9 +16,10 @@ import limpieza from '../images/limpieza.png';
 import ninera from '../images/ninera.png';
 import pintor from '../images/pintor.png';
 import plomero from '../images/plomero.png';
-import { fontWeight } from '@mui/system';
 
 const WorkerTile = ({
+    service,
+    workerId,
     workerService,
     firstName,
     lastName,
@@ -25,20 +27,10 @@ const WorkerTile = ({
     phone,
     certificates,
     description,
+    called,
+    setJobs,
 }) => {
-    const workerImage = {
-        Albañil: albanil,
-        Carpintero: carpintero,
-        Cerrajero: cerrajero,
-        Electricista: electricista,
-        Jardinero: jardinero,
-        Limpieza: limpieza,
-        Niñera: ninera,
-        Pintor: pintor,
-        Plomero: plomero,
-    };
-
-    function getWorkerImage() {
+    const getWorkerImage = () => {
         const image =
             workerService !== 'all' ? workerService : services.split(',')[0];
         switch (image) {
@@ -63,10 +55,39 @@ const WorkerTile = ({
             default:
                 return albanil;
         }
-    }
+    };
+
+    const call = async () => {
+        try {
+            let response;
+            if (!called) {
+                response = await axios.post(
+                    `${apiServer}/job/call`,
+                    { workerId },
+                    {
+                        withCredentials: true,
+                    },
+                );
+            } else {
+                response = await axios.post(
+                    `${apiServer}/job/cancel`,
+                    { workerId },
+                    { withCredentials: true },
+                );
+            }
+
+            setJobs(response.jobs);
+            location.assign(`/find/${workerService}`);
+        } catch (err) {
+            console.log(err);
+            if (axios.isAxiosError(err) && err.response) {
+                alert((err.response?.data).error);
+            }
+        }
+    };
 
     return (
-        <Stack width='95%'>
+        <Stack>
             <Grid
                 sx={{
                     margin: '8px',
@@ -124,7 +145,19 @@ const WorkerTile = ({
                     </Stack>
                 </Grid>
                 <Grid item xs={1}>
-                    <Button variant='contained'>Call</Button>
+                    {called ? (
+                        <Button
+                            variant='contained'
+                            color='error'
+                            onClick={call}
+                        >
+                            Cancel
+                        </Button>
+                    ) : (
+                        <Button variant='contained' onClick={call}>
+                            Call
+                        </Button>
+                    )}
                 </Grid>
             </Grid>
         </Stack>

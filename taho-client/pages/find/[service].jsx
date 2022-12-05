@@ -1,10 +1,11 @@
 import Script from 'next/script';
 import React from 'react';
 import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import WorkerTile from '../../components/WorkerTile';
-import { apiServer, servicesNames } from '../../config/index.js';
+import { apiServer } from '../../config/index.js';
 import { useRouter } from 'next/router';
 
 export const getServerSideProps = async (ctx) => {
@@ -36,6 +37,7 @@ export default function Find({ user }) {
     const router = useRouter();
     const workerService = router.query;
     const [workers, setWorkers] = React.useState([]);
+    const [jobs, setJobs] = React.useState([]);
 
     const servicesNames = [
         'Albañil',
@@ -51,19 +53,30 @@ export default function Find({ user }) {
 
     React.useEffect(() => {
         const fetchWorkers = async () => {
-            console.log(workerService.service);
-            const workersResponse = await fetch(
+            const response = await fetch(
                 `${apiServer}/worker/${workerService.service}`,
                 {
                     credentials: 'include',
                 },
             );
-            const workers = await workersResponse.json();
-            setWorkers(workers);
+
+            const res = await response.json();
+            setWorkers(res.workers);
+            setJobs(res.jobs);
         };
 
         fetchWorkers().catch(console.error);
     }, [workerService]);
+
+    const isCalled = (workerId) => {
+        let call = false;
+        jobs.map((job) => {
+            if (job.workerId === workerId) {
+                call = true;
+            }
+        });
+        return call;
+    };
 
     return (
         <>
@@ -123,14 +136,16 @@ export default function Find({ user }) {
                     workers.map((worker) => (
                         <WorkerTile
                             key={`worker-${worker.id}`}
-                            workerService={workerService.service}
                             workerId={worker.id}
+                            workerService={workerService.service}
                             firstName={worker.firstName}
                             lastName={worker.lastName}
                             services={worker.services}
                             phone={worker.phone}
                             certificates={worker.certificates}
                             description={worker.description}
+                            called={isCalled(worker.id)}
+                            setJobs={setJobs}
                         />
                     ))}
             </div>

@@ -6,6 +6,7 @@ import express from 'express';
 import { sequelize } from './db/index.js';
 import UserRoutes from './controllers/User/index.js';
 import WorkerRoutes from './controllers/Worker/index.js';
+import JobRoutes from './controllers/Job/index.js';
 import { port, websiteServer } from './config/index.js';
 
 dotenv.config({ path: `.env` });
@@ -20,6 +21,8 @@ app.use(cookieParser());
 app.use('/user', UserRoutes);
 // Worker routes
 app.use('/worker', WorkerRoutes);
+// Job routes
+app.use('/job', JobRoutes);
 
 sequelize.sync({ force: true }).then(() => console.log('Database is ready'));
 

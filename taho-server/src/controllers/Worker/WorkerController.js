@@ -1,5 +1,5 @@
 import { sequelize } from '../../db/index.js';
-import { Worker } from '../../db/models.js';
+import { Job, Worker } from '../../db/models.js';
 import { Op } from 'sequelize';
 import { servicesNames } from '../../config/index.js';
 
@@ -108,24 +108,26 @@ class WorkerController {
     getWorkers() {
         return async (req, res) => {
             const { service } = req.params;
+            const userId = req.userId.slice(1);
 
+            let workers;
             if (service === 'all') {
-                const workers = await Worker.findAll();
-                res.json(workers);
+                workers = await Worker.findAll();
             } else if (servicesNames.includes(service)) {
-                const workers = await Worker.findAll({
+                workers = await Worker.findAll({
                     where: {
                         services: {
                             [Op.like]: `%${service}%`,
                         },
                     },
                 });
-                res.json(workers);
             } else {
                 return res.sendStatus(404);
             }
 
-            res.json(service);
+            const jobs = await Job.findAll({ where: { userId } });
+
+            res.json({ workers, jobs });
         };
     }
 }

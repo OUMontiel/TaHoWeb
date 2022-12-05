@@ -143,14 +143,6 @@ Job.init(
             },
             allowNull: false,
         },
-        stars: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        review: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
     },
     {
         sequelize,
@@ -159,60 +151,5 @@ Job.init(
     },
 );
 
-export class Award extends Model {}
-
-Award.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    },
-    {
-        sequelize,
-        modelName: 'awards',
-        timestamps: true,
-    },
-);
-
-export class WorkerAward extends Model {}
-
-WorkerAward.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        workerId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: Worker,
-                key: 'id',
-            },
-            allowNull: false,
-        },
-        awardId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: Award,
-                key: 'id',
-            },
-            allowNull: false,
-        },
-    },
-    {
-        sequelize,
-        modelName: 'workerAwards',
-        timestamps: true,
-    },
-);
+Job.hasOne(User);
+Job.hasOne(Worker);

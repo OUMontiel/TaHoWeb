@@ -20,7 +20,7 @@ class UserController {
                 /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
             if (!phonePattern.test(phone)) {
                 return res.status(400).json({
-                    error: 'Phone number is not entered correctly',
+                    error: 'Phone number is not entered correctly.',
                 });
             }
             const hashedPassword = await User.hashPassword(password);
@@ -49,7 +49,7 @@ class UserController {
             res.cookie('authcookie', token);
             res.status(201).json({
                 success: true,
-                message: 'User created successfully',
+                message: 'User created successfully.',
                 user,
             });
         };

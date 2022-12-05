@@ -43,7 +43,6 @@ export default function ProfileModal({
                     </Typography>
                     <Typography textAlign='left'>
                         <b>Apellido: </b> {user.lastName}{' '}
-                        {console.log(isWorker)}
                     </Typography>
                     <Typography textAlign='left'>
                         <b>Teléfono: </b> {user.phone}

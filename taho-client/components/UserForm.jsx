@@ -57,21 +57,18 @@ export default function UserForm(props) {
                 >
                     <TextField
                         required
-                        fullWidth
                         name='firstName'
                         id='firstName'
                         label='First name'
                     />
                     <TextField
                         required
-                        fullWidth
                         name='lastName'
                         id='lastName'
                         label='Last name'
                     />
                     <TextField
                         required
-                        fullWidth
                         name='phone'
                         id='phone'
                         label='Phone'
@@ -82,14 +79,12 @@ export default function UserForm(props) {
                     />
                     <TextField
                         required
-                        fullWidth
                         name='username'
                         id='username'
                         label='Username'
                     />
                     <TextField
                         required
-                        fullWidth
                         name='password'
                         id='password'
                         label='Password'
@@ -108,12 +103,7 @@ export default function UserForm(props) {
                     >
                         Create account
                     </Button>
-                    <Stack
-                        direction='row'
-                        spacing={2}
-                        fullWidth
-                        justifyContent='center'
-                    >
+                    <Stack direction='row' spacing={2} justifyContent='center'>
                         <Link href='/'>
                             <Button
                                 variant='contained'

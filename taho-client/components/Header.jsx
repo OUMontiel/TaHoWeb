@@ -34,8 +34,8 @@ export default function Header({ user, isWorker }) {
                 credentials: 'include',
             });
             location.assign('/');
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
         }
         document.cookie = 'authcookie=;expires=' + new Date().toUTCString();
     };

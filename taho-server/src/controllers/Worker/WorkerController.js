@@ -115,7 +115,7 @@ class WorkerController {
             } else if (servicesNames.includes(service)) {
                 const workers = await Worker.findAll({
                     where: {
-                        servicesNames: {
+                        services: {
                             [Op.like]: `%${service}%`,
                         },
                     },

@@ -51,6 +51,7 @@ export default function Find({ user }) {
 
     React.useEffect(() => {
         const fetchWorkers = async () => {
+            console.log(workerService.service);
             const workersResponse = await fetch(
                 `${apiServer}/worker/${workerService.service}`,
                 {
@@ -58,7 +59,6 @@ export default function Find({ user }) {
                 },
             );
             const workers = await workersResponse.json();
-            console.log(workers);
             setWorkers(workers);
         };
 
@@ -100,6 +100,7 @@ export default function Find({ user }) {
                 </Button>
                 {servicesNames.map((service) => (
                     <Button
+                        key={service}
                         variant='contained'
                         sx={{
                             color: 'black',

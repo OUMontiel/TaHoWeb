@@ -5,3 +5,14 @@ export const jwtSecret = process.env.JWT_SECRET || '1234567890';
 export const sqlite = {
     file: process.env.SQLITE_FILE || './taho.sqlite',
 };
+export const servicesNames = [
+    'Albañil',
+    'Carpintero',
+    'Cerrajero',
+    'Electricista',
+    'Jardinero',
+    'Limpieza',
+    'Niñera',
+    'Pintor',
+    'Plomero',
+];

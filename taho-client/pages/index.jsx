@@ -54,7 +54,7 @@ export default function Index() {
                 justifyContent='center'
                 alignItems='center'
                 spacing={2}
-                padding='100px'
+                minHeight='100vh'
             >
                 <Typography variant='h1' align='center' fontSize={'4.5rem'}>
                     Welcome to
@@ -74,75 +74,6 @@ export default function Index() {
                     </Link>
                 </Stack>
             </Stack>
-            <Box
-                className='instrucciones'
-                component='div'
-                display='flex'
-                position='absolute'
-                bottom='0'
-                left='0'
-                right='0'
-            >
-                <h2>Pasos a seguir:</h2>
-                <div className='instructions-container'>
-                    <div className='box'>
-                        <div className='front' style={{ marginTop: '10px' }}>
-                            <Image
-                                className='step-image'
-                                src={registrate}
-                                width={140}
-                                height={140}
-                            />
-                        </div>
-                        <div className='back'>
-                            <br />
-                            <p id='text'>
-                                1. El primer paso es crear una cuenta y
-                                registrarte con nosotros.
-                            </p>
-                            <p id='text'>
-                                Puedes registrarte como usuario o trabajador
-                                según tus necesidades
-                            </p>
-                        </div>
-                    </div>
-                    <div className='box'>
-                        <div className='front' style={{ marginTop: '10px' }}>
-                            <Image
-                                className='step-image'
-                                src={iniciosesion}
-                                width={140}
-                                height={140}
-                            />
-                        </div>
-                        <div className='back'>
-                            <br />
-                            <p id='text'>2. Inicia sesión en nuestra página.</p>
-                        </div>
-                    </div>
-                    <div className='box'>
-                        <div className='front' style={{ marginTop: '10px' }}>
-                            <Image
-                                className='step-image'
-                                src={busca}
-                                width={140}
-                                height={140}
-                            />
-                        </div>
-                        <div className='back'>
-                            <p id='text'>
-                                3. ¡A explorar la página! En caso de ser
-                                usuario, podrás buscar trabajdores que se
-                                adapten a tus necesidades.
-                            </p>
-                            <p id='text'>
-                                En caso de ser trabajador, podrás publicar tu
-                                perfil y esperar a que te contacten.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </Box>
         </Container>
     );
 }

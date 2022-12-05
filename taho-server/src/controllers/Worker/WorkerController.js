@@ -1,6 +1,7 @@
 import { sequelize } from '../../db/index.js';
 import { Worker } from '../../db/models.js';
 import { Op } from 'sequelize';
+import { servicesNames } from '../../config/index.js';
 
 class WorkerController {
     register() {
@@ -108,25 +109,13 @@ class WorkerController {
         return async (req, res) => {
             const { service } = req.params;
 
-            const services = [
-                'Albañil',
-                'Carpintero',
-                'Cerrajero',
-                'Electricista',
-                'Jardinero',
-                'Limpieza',
-                'Niñera',
-                'Pintor',
-                'Plomero',
-            ];
-
             if (service === 'all') {
                 const workers = await Worker.findAll();
                 res.json(workers);
-            } else if (services.includes(service)) {
+            } else if (servicesNames.includes(service)) {
                 const workers = await Worker.findAll({
                     where: {
-                        services: {
+                        servicesNames: {
                             [Op.like]: `%${service}%`,
                         },
                     },

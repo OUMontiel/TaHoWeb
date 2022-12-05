@@ -1,10 +1,10 @@
 import Script from 'next/script';
 import React from 'react';
+import Button from '@mui/material/Button';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import Image from 'next/image';
 import WorkerTile from '../../components/WorkerTile';
-import { apiServer } from '../../config/index.js';
+import { apiServer, servicesNames } from '../../config/index.js';
 import { useRouter } from 'next/router';
 
 export const getServerSideProps = async (ctx) => {
@@ -36,6 +36,18 @@ export default function Find({ user }) {
     const router = useRouter();
     const workerService = router.query;
     const [workers, setWorkers] = React.useState([]);
+
+    const servicesNames = [
+        'Albañil',
+        'Carpintero',
+        'Cerrajero',
+        'Electricista',
+        'Jardinero',
+        'Limpieza',
+        'Niñera',
+        'Pintor',
+        'Plomero',
+    ];
 
     React.useEffect(() => {
         const fetchWorkers = async () => {
@@ -71,90 +83,38 @@ export default function Find({ user }) {
 
             <Header user={user} />
             <div className='icons'>
-                <form>
-                    <div className='form-row justify-content-md-center'>
-                        <div className='col-auto'>
-                            <select
-                                className='custom-select'
-                                id='filtrarPorTrabajo'
-                                onchange='searchFilter()'
-                            >
-                                <option value='' selected>
-                                    Trabajo
-                                </option>
-                                <option value='albañil'>Albañil</option>
-                                <option value='carpintero'>Carpintero</option>
-                                <option value='cerrajero'>Cerrajero</option>
-                                <option value='electricista'>
-                                    Electricista
-                                </option>
-                                <option value='jardinero'>Jardinero</option>
-                                <option value='limpieza'>Limpieza</option>
-                                <option value='niñera'>Niñera</option>
-                                <option value='pintor'>Pintor</option>
-                                <option value='plomero'>Plomero</option>
-                            </select>
-                        </div>
-                        <div className='col-auto'>
-                            <select
-                                className='custom-select'
-                                id='filtrarPorLoc'
-                                onchange='searchFilter()'
-                            >
-                                <option value='' selected>
-                                    Ubicación
-                                </option>
-                                <option value='green'>Apodaca</option>
-                                <option value='blue'>Cadereyta Jimenez</option>
-                                <option value='yellow'>El Carmen</option>
-                                <option value='yellow'>Garcia</option>
-                                <option value='yellow'>
-                                    San Pedro Garza Garcia
-                                </option>
-                                <option value='yellow'>General Escobedo</option>
-                                <option value='yellow'>Guadalupe</option>
-                                <option value='yellow'>Juarez</option>
-                                <option value='yellow'>Monterrey</option>
-                                <option value='yellow'>Salinas Victoria</option>
-                                <option value='yellow'>
-                                    San Nicolas de los Garza
-                                </option>
-                                <option value='yellow'>Santa Catarina</option>
-                                <option value='yellow'>Santiago</option>
-                            </select>
-                        </div>
-                        <div className='col-auto'>
-                            <select
-                                className='custom-select'
-                                id='filtrarPorCosto'
-                                onchange='searchFilter()'
-                            >
-                                <option value='' selected>
-                                    Costo
-                                </option>
-                                <option value='green'>$$$</option>
-                                <option value='blue'>$$</option>
-                                <option value='yellow'>$</option>
-                            </select>
-                        </div>
-                        <div className='col-auto'>
-                            <select
-                                className='custom-select'
-                                id='filtrarPorCalif'
-                                onchange='searchFilter()'
-                            >
-                                <option value='' selected>
-                                    Calificacion
-                                </option>
-                                <option value='cinco'>5</option>
-                                <option value='cuatro'>4</option>
-                                <option value='tres'>3</option>
-                                <option value='dos'>2</option>
-                                <option value='uno'>1</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+                <Button
+                    variant='contained'
+                    sx={{
+                        color: 'black',
+                        backgroundColor: '#4cd5ff',
+                        borderRadius: '20px',
+                        textTransform: 'none',
+                        margin: '2px',
+                    }}
+                    onClick={() => {
+                        location.assign(`/find/all`);
+                    }}
+                >
+                    Todos
+                </Button>
+                {servicesNames.map((service) => (
+                    <Button
+                        variant='contained'
+                        sx={{
+                            color: 'black',
+                            backgroundColor: '#4cd5ff',
+                            borderRadius: '20px',
+                            textTransform: 'none',
+                            margin: '2px',
+                        }}
+                        onClick={() => {
+                            location.assign(`/find/${service}`);
+                        }}
+                    >
+                        {service}
+                    </Button>
+                ))}
                 <br />
                 <br />
 
@@ -162,7 +122,7 @@ export default function Find({ user }) {
                     workers.map((worker) => (
                         <WorkerTile
                             key={`worker-${worker.id}`}
-                            service={workerService}
+                            workerService={workerService.service}
                             workerId={worker.id}
                             firstName={worker.firstName}
                             lastName={worker.lastName}
